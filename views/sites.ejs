@@ -1,3 +1,34 @@
 <main>
-  <p>sites</p>
+  <form action="/sites" method="post" style="display: flex;flex-wrap: wrap; gap: 5px;margin-bottom: 5px;">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="target" placeholder="Target" required>
+    <input type="text" name="source" placeholder="Source" required>
+    <button type="submit">Add Site</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Target</th>
+        <th>Source</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% sites.forEach((site) => { %>
+        <tr>
+          <td><%= site.id %></td>
+          <td><%= site.name %></td>
+          <td>/<%= site.target %></td>
+          <td><%= site.source %></td>
+          <td>
+            <button type="button" onclick="copyLinkToClipboard('<%= url %>/in','<%= site.target %>')">Copy</button>
+            <button type="button">Edit</button>
+            <button type="button" onclick="deleteSite('<%= site.id %>')">Delete</button>
+          </td>
+        </tr>
+        <% }) %>
+    </tbody>
+  </table>
 </main>
